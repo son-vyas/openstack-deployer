@@ -11,4 +11,5 @@ echo "ADMIN_PASSWORD=secret" >> local.conf
 echo "DATABASE_PASSWORD=$ADMIN_PASSWORD" >> local.conf
 echo "RABBIT_PASSWORD=$ADMIN_PASSWORD" >> local.conf
 echo "SERVICE_PASSWORD=$ADMIN_PASSWORD" >> local.conf
+sudo chmod 755 /opt/stack
 ./stack.sh
