@@ -22,3 +22,26 @@ systemctl start iptables
 dnf -y remove firewalld
 
 reboot
+
+git clone https://opendev.org/openstack/devstack
+cd devstack/
+git pull https://review.opendev.org/openstack/devstack refs/changes/84/678184/1
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+git pull https://review.opendev.org/openstack/devstack refs/changes/84/678184/1
+git show
+touch local.conf
+echo "[[local|localrc]]" > local.conf
+echo "ADMIN_PASSWORD=secret" >> local.conf
+echo "DATABASE_PASSWORD=$ADMIN_PASSWORD" >> local.conf
+echo "RABBIT_PASSWORD=$ADMIN_PASSWORD" >> local.conf
+echo "SERVICE_PASSWORD=$ADMIN_PASSWORD" >> local.conf
+echo "HOST_IP=192.168.122.21" >> local.conf
+bash -x ./stack.sh 
+sudo iptables -I INPUT --in-interface enp1s0 -j ACCEPT
+   
+#After instance launch
+#→ go to security group add rule
+#→ direction → ingress
+#→ add ssh & icmp rule for ping and ssh
+#→ ssh cirros@172.24.4.46 passwd → go
