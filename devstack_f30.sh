@@ -11,7 +11,7 @@ sed -i s/"SELINUX=disabled"/"SELINUX=enforcing"/ /etc/selinux/config
 hostnamectl set-hostname myhost.mydomain
 
 dnf -y update
-dnf -y install git vim tmux
+dnf -y install git
 dnf -y install iptables-services
 
 systemctl disable firewalld
